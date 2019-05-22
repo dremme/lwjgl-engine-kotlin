@@ -1,2 +1,4 @@
-rootProject.name = 'lwjgl-engine-kotlin'
+rootProject.name = 'lwjgl-kotlin'
 
+include 'engine'
+include 'game'
