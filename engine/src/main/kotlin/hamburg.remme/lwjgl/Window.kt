@@ -14,11 +14,10 @@ import org.lwjgl.glfw.GLFWErrorCallback
 
 class Window internal constructor() {
 
-    var width: Int = 0
-        private set
-    var height: Int = 0
-        private set
-    val isOpen: Boolean get() = !glfwWindowShouldClose(pointer)
+    var width: Int = 0; private set
+    var height: Int = 0; private set
+    val isOpen: Boolean
+        get() = !glfwWindowShouldClose(pointer)
     var title: String
         get() = throw RuntimeException("Cannot get GLFW window title.")
         set(value) = glfwSetWindowTitle(pointer, value)

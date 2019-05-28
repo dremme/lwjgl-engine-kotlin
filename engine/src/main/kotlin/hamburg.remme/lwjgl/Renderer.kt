@@ -65,7 +65,7 @@ class Renderer internal constructor() {
     }
 
     private fun render(gameObject: GameObject<*>) {
-        val material = gameObject.model!!.material
+        val material = gameObject.model.material
 
         use(material.shader)
         use(material.texture)
@@ -77,7 +77,7 @@ class Renderer internal constructor() {
             it["albedo_map"] = 0 // TODO: move to shader init?
         }
 
-        useAndDraw(gameObject.model!!.mesh)
+        useAndDraw(gameObject.model.mesh)
     }
 
     private fun calculateMvpMatrix(gameObject: GameObject<*>): Matrix4f {

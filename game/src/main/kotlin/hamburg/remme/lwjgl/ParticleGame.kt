@@ -28,12 +28,11 @@ class ParticleGame : Application<ParticleGame>() {
         val shader = createShader("/standard.vert.glsl", "/standard.frag.glsl")
 
         // Add some objects to render queue
-        (1 until 10_000).forEach { _ ->
+        repeat(10_000) {
             val m = Material(shader)
             randomColor(m)
 
-            val o = GameObject<ParticleGame>(Model(mesh, m))
-            o.behaviors += ParticleBehavior(0.98f, 1f)
+            val o = GameObject(Model(mesh, m), ParticleBehavior(0.98f, 1f))
             o.scale.set(1.5f, 1.5f, 1f)
             positionObject(o)
 

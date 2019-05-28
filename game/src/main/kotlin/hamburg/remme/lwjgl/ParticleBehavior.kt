@@ -3,10 +3,7 @@ package hamburg.remme.lwjgl
 import hamburg.remme.lwjgl.input.Button
 import org.joml.Vector3f
 
-class ParticleBehavior(
-    private val drag: Float,
-    private val acceleration: Float = 0f
-) : Behavior<ParticleGame>() {
+class ParticleBehavior(private val drag: Float, private val acceleration: Float) : Behavior<ParticleGame>() {
 
     private val velocity = Vector3f()
     private val force = Vector3f()

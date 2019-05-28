@@ -4,12 +4,10 @@ import hamburg.remme.lwjgl.scene.Model
 import org.joml.Quaternionf
 import org.joml.Vector3f
 
-class GameObject<T : Application<T>>(var model: Model? = null) {
+class GameObject<T : Application<T>>(val model: Model, vararg val behaviors: Behavior<T>) {
 
-    val behaviors: MutableSet<Behavior<T>> = mutableSetOf()
     val position: Vector3f = Vector3f()
     val scale: Vector3f = Vector3f(1f)
     val rotation: Quaternionf = Quaternionf()
-    val hasModel: Boolean get() = model != null
 
 }

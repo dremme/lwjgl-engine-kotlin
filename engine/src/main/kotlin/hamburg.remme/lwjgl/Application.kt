@@ -4,14 +4,10 @@ import java.lang.System.currentTimeMillis
 
 abstract class Application<T : Application<T>> {
 
-    lateinit var window: Window
-        private set
-    lateinit var renderer: Renderer
-        private set
-    var time: Long = currentTimeMillis()
-        private set
-    var lastTime: Long = currentTimeMillis()
-        private set
+    lateinit var window: Window private set
+    lateinit var renderer: Renderer private set
+    var time: Long = currentTimeMillis(); private set
+    var lastTime: Long = currentTimeMillis(); private set
 
     private val gameObjects = mutableSetOf<GameObject<T>>()
     private lateinit var behaviors: Sequence<Behavior<T>>
@@ -48,21 +44,21 @@ abstract class Application<T : Application<T>> {
     }
 
     fun add(gameObject: GameObject<T>) {
-        gameObject.behaviors.forEach { b ->
-            b.gameObject = gameObject
-            b.application = getThis()
-            b.window = window
-            b.renderer = renderer
+        gameObject.behaviors.forEach {
+            it.gameObject = gameObject
+            it.application = getThis()
+            it.window = window
+            it.renderer = renderer
         }
         gameObjects.add(gameObject)
-        if (gameObject.hasModel) renderer.add(gameObject)
+        renderer.add(gameObject)
         gameObject.behaviors.forEach(Behavior<T>::start)
         updateBehaviors()
     }
 
     fun remove(gameObject: GameObject<T>) {
         gameObjects.remove(gameObject)
-        if (gameObject.hasModel) renderer.remove(gameObject)
+        renderer.remove(gameObject)
         gameObject.behaviors.forEach(Behavior<T>::stop)
         updateBehaviors()
     }
